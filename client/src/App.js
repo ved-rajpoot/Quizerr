@@ -9,12 +9,14 @@ import JoinQuiz from './screens/JoinQuiz';
 import AttemptQuiz from './screens/AttemptQuiz';
 import AttemptBlindQuiz from './screens/AttemptBlindQuiz';
 import Responses from './screens/Responses';
+import OneTimeDashboard from './screens/OneTimeDashboard';
 
 const App = () => {
   return (
     <>
       <Routes>
         <Route exact path="/" element={<Home/>} />
+        {/* <Route exact path="/" element={<OneTimeDashboard/>} /> */}
         <Route path = "/dashboard" element={<UserDashboard/>}/>
         <Route path = "/create-quiz" element={<CreateQuiz/>}/>
         <Route path = "/created-successfully/:quizCode" element={<CreatedSuccessfully/>}/>
