@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 // import App from '../FirebaseConfig/config';
 import firebase from 'firebase/compat/app';
 import firebaseApp from '../FirebaseConfig/config';
-
+// import {style}
+import './Home.css';
 const Home = () => {
 
 	const GoogleSignin = ()=>{
@@ -32,6 +33,15 @@ const Home = () => {
 			<button onClick={GoogleSignin}>Sign in with Google</button>
 			<button onClick={Facebook_signin}>Sign in with Facebook</button>
 			<button onClick={Email_signin}>Sign in with Email</button>
+
+			<div className="login">
+            <h1>Login</h1>
+            <input type="text" name="email"  placeholder="Enter your Email"></input>
+            <input type="password" name="password"   placeholder="Enter your Password" ></input>
+            <div className="button" >Login</div>
+            <div>or</div>
+            <div className="button" >Register</div>
+        </div>
 		</>
 	)
 }

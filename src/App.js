@@ -10,13 +10,23 @@ import AttemptQuiz from './screens/AttemptQuiz';
 import AttemptBlindQuiz from './screens/AttemptBlindQuiz';
 import Responses from './screens/Responses';
 import OneTimeDashboard from './screens/OneTimeDashboard';
+import firebaseApp from './FirebaseConfig/config';
 
+import { useState, useEffect } from 'react';
 const App = () => {
+  const [user,setUser] = useState({});
+  
+  firebaseApp.auth().onAuthStateChanged((firebaseuser)=>{
+    console.log(firebaseuser);
+    if(firebaseuser) return setUser(firebaseuser);
+    setUser(null);
+  })
   return (
     <>
+    {
+      !user ? <Home/>:
       <Routes>
-        <Route exact path="/" element={<Home/>} />
-        {/* <Route exact path="/" element={<OneTimeDashboard/>} /> */}
+        <Route exact path="/" element={<OneTimeDashboard/>} />
         <Route path = "/dashboard" element={<UserDashboard/>}/>
         <Route path = "/create-quiz" element={<CreateQuiz/>}/>
         <Route path = "/created-successfully/:quizCode" element={<CreatedSuccessfully/>}/>
@@ -25,6 +35,7 @@ const App = () => {
         <Route path = "/attempt-blind-quiz/:quizCode" element={<AttemptBlindQuiz/>}/>
         <Route path = "/responses/:quizCode" element={<Responses/>}/>
       </Routes>
+    }
     </>
   );
 }
